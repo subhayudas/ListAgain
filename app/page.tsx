@@ -123,7 +123,13 @@ function FloatingPaths({ position }: { position: number }) {
 }
 
 // Testimonial component
-function Testimonial({ name, role, quote, rating, delay = 0 }) {
+function Testimonial({ name, role, quote, rating, delay = 0 }: {
+  name: string;
+  role: string;
+  quote: string;
+  rating: number;
+  delay?: number;
+}) {
   return (
     <motion.div 
       className="bg-background rounded-xl p-6 shadow-md border border-border/50 flex flex-col h-full"
@@ -147,7 +153,12 @@ function Testimonial({ name, role, quote, rating, delay = 0 }) {
 }
 
 // Stats counter with animation
-function StatCounter({ value, label, icon, delay = 0 }) {
+function StatCounter({ value, label, icon, delay = 0 }: {
+  value: number;
+  label: string;
+  icon: React.ReactNode;
+  delay?: number;
+}) {
   const [count, setCount] = useState(0);
   
   useEffect(() => {
@@ -188,7 +199,13 @@ function StatCounter({ value, label, icon, delay = 0 }) {
 }
 
 // How it works step component
-function HowItWorksStep({ number, title, description, icon, delay = 0 }) {
+function HowItWorksStep({ number, title, description, icon, delay = 0 }: {
+  number: string;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  delay?: number;
+}) {
   return (
     <motion.div 
       className="flex gap-6"
@@ -212,7 +229,12 @@ function HowItWorksStep({ number, title, description, icon, delay = 0 }) {
 }
 
 // Category card component
-function CategoryCard({ name, image, count, delay = 0 }) {
+function CategoryCard({ name, image, count, delay = 0 }: {
+  name: string;
+  image: string;
+  count: number;
+  delay?: number;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}

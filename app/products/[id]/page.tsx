@@ -24,7 +24,8 @@ interface Product {
     full_name: string
     avatar_url: string
     rating: number
-    phone: string  // Add phone field
+    phone: string
+    email: string  // Add email field to the interface
   }
 }
 
@@ -139,7 +140,6 @@ export default function ProductPage() {
             </div>
 
             {/* Seller Information */}
-            // In the seller information card section:
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center gap-4">
