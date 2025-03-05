@@ -8,9 +8,9 @@ const nextConfig = {
       'images.unsplash.com',
       'xsgames.co',
       'via.placeholder.com',
-      'lh3.googleusercontent.com'
     ]
   },
-};
+  transpilePackages: ['framer-motion'],
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

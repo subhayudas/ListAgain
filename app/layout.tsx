@@ -6,6 +6,8 @@ import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/header';
 import { AuthProvider } from '@/components/auth-provider';
 import { Toaster as SonnerToaster } from 'sonner';
+import './styles/animations.css'
+
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,7 +23,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <head>
+        <script 
+          type="module" 
+          src="https://unpkg.com/@splinetool/viewer@1.9.71/build/spline-viewer.js"
+        />
+      </head>
+      <body className="min-h-screen">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -30,11 +38,7 @@ export default function RootLayout({
         >
           <AuthProvider>
             <Header />
-            <main className="min-h-screen bg-background">
-              {children}
-            </main>
-            <Toaster />
-            <SonnerToaster />
+            {children}
           </AuthProvider>
         </ThemeProvider>
       </body>

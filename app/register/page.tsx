@@ -27,15 +27,23 @@ export default function RegisterPage() {
     setError('')
 
     try {
-      // Sign up with Supabase Auth
+      // Sign up with Supabase Auth including user metadata
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
+        options: {
+          data: {
+            full_name: formData.fullName,
+          }
+        }
       })
 
       if (authError) throw authError
 
       if (authData.user) {
+        // Wait a brief moment for auth to complete
+        await new Promise(resolve => setTimeout(resolve, 1000))
+
         // Create user profile
         const { error: profileError } = await supabase.from('users').insert({
           id: authData.user.id,
@@ -45,9 +53,14 @@ export default function RegisterPage() {
           phone: formData.phone,
         })
 
-        if (profileError) throw profileError
+        if (profileError) {
+          console.error('Profile creation error:', profileError)
+          // If profile creation fails, clean up the auth user
+          await supabase.auth.signOut()
+          throw new Error('Failed to create user profile. Please try again.')
+        }
 
-        router.push('/')
+        router.push('/login')
       }
     } catch (error: any) {
       setError(error.message)

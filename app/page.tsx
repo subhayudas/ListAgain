@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Link from 'next/link';
@@ -6,67 +7,75 @@ import FeaturedProducts from '@/components/featured-products';
 
 export default function Home() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-12">
       {/* Hero Section */}
-      <section className="text-center py-16 bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl mb-12">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">
-          Your College Marketplace
-        </h1>
-        <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Buy, sell, and discover items within your college community. Safe, easy, and reliable.
-        </p>
-        <div className="flex gap-4 justify-center">
-          <Button asChild size="lg">
-            <Link href="/products">Browse Products</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/sell">Start Selling</Link>
-          </Button>
+      <section className="text-center py-24 bg-gradient-to-r from-primary/5 to-transparent rounded-3xl mb-24 relative overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-20" style={{ transform: 'scale(1.2)' }}>
+          <spline-viewer 
+            url="https://prod.spline.design/qxlBEWwHjFMewPSw/scene.splinecode"
+            className="w-full h-full"
+          />
+        </div>
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
+            Your College Marketplace
+          </h1>
+          <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
+            Buy, sell, and discover items within your college community.
+          </p>
+          <div className="flex gap-6 justify-center">
+            <Button asChild size="lg" className="px-8">
+              <Link href="/products">Browse Products</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="px-8">
+              <Link href="/sell">Start Selling</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-        <Card className="p-6 text-center">
-          <ShoppingBag className="w-12 h-12 mx-auto mb-4 text-primary" />
-          <h3 className="text-xl font-semibold mb-2">Easy Buying & Selling</h3>
-          <p className="text-muted-foreground">
-            List your items or find what you need with our simple interface
+      <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+        <Card className="p-8 text-center bg-background/50 hover:bg-background/80 transition-colors">
+          <ShoppingBag className="w-10 h-10 mx-auto mb-6 text-primary" />
+          <h3 className="text-lg font-medium mb-2">Easy Buying & Selling</h3>
+          <p className="text-muted-foreground text-sm">
+            Simple interface for seamless transactions
           </p>
         </Card>
-        <Card className="p-6 text-center">
-          <Search className="w-12 h-12 mx-auto mb-4 text-primary" />
-          <h3 className="text-xl font-semibold mb-2">Smart Search</h3>
-          <p className="text-muted-foreground">
-            Find exactly what you're looking for with advanced filters
+        <Card className="p-8 text-center bg-background/50 hover:bg-background/80 transition-colors">
+          <Search className="w-10 h-10 mx-auto mb-6 text-primary" />
+          <h3 className="text-lg font-medium mb-2">Smart Search</h3>
+          <p className="text-muted-foreground text-sm">
+            Find exactly what you need
           </p>
         </Card>
-        <Card className="p-6 text-center">
-          <MessageCircle className="w-12 h-12 mx-auto mb-4 text-primary" />
-          <h3 className="text-xl font-semibold mb-2">Secure Messaging</h3>
-          <p className="text-muted-foreground">
-            Communicate safely with buyers and sellers
+        <Card className="p-8 text-center bg-background/50 hover:bg-background/80 transition-colors">
+          <MessageCircle className="w-10 h-10 mx-auto mb-6 text-primary" />
+          <h3 className="text-lg font-medium mb-2">Secure Messaging</h3>
+          <p className="text-muted-foreground text-sm">
+            Safe communication channels
           </p>
         </Card>
-        <Card className="p-6 text-center">
-          <Shield className="w-12 h-12 mx-auto mb-4 text-primary" />
-          <h3 className="text-xl font-semibold mb-2">Verified Users</h3>
-          <p className="text-muted-foreground">
-            Trade with confidence in our verified community
+        <Card className="p-8 text-center bg-background/50 hover:bg-background/80 transition-colors">
+          <Shield className="w-10 h-10 mx-auto mb-6 text-primary" />
+          <h3 className="text-lg font-medium mb-2">Verified Users</h3>
+          <p className="text-muted-foreground text-sm">
+            Trade with confidence
           </p>
         </Card>
       </section>
 
       {/* Featured Products */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold mb-8">Featured Products</h2>
+      <section className="mb-24">
+        <h2 className="text-3xl font-medium mb-12 text-center">Featured Products</h2>
         <FeaturedProducts />
       </section>
 
       {/* Categories */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold mb-8">Popular Categories</h2>
-        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+      <section className="mb-24">
+        <h2 className="text-3xl font-medium mb-12 text-center">Popular Categories</h2>
+        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8">
           {[
             { name: 'Clothing', image: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80' },
             { name: 'Bicycles', image: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=800&q=80' },
@@ -77,15 +86,15 @@ export default function Home() {
             <Link
               key={category.name}
               href={`/category/${category.name.toLowerCase()}`}
-              className="group relative overflow-hidden rounded-lg aspect-square"
+              className="group relative overflow-hidden rounded-2xl aspect-square bg-background/50 hover:bg-background/80 transition-colors"
             >
               <img
                 src={category.image}
                 alt={category.name}
-                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
+                className="object-cover w-full h-full opacity-80 group-hover:opacity-90 transition-opacity"
               />
-              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                <h3 className="text-white text-xl font-semibold">{category.name}</h3>
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                <h3 className="text-white text-xl font-medium">{category.name}</h3>
               </div>
             </Link>
           ))}
