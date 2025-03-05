@@ -64,7 +64,7 @@ export default function Header() {
               className="flex items-center"
             >
               <Link href="/" className="text-xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                College Market
+                ListAgain
               </Link>
             </motion.div>
 

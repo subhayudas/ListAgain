@@ -1,10 +1,14 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { Card, CardContent, CardFooter } from './ui/card'
+import { Card, CardContent } from './ui/card'
 import { Button } from './ui/button'  
 import { supabase } from '@/lib/supabase/client'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { Heart, ExternalLink, Tag } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { Badge } from './ui/badge'
 
 interface Product {
   id: string
@@ -23,7 +27,6 @@ export default function FeaturedProducts() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Update the query to include seller information
     async function fetchProducts() {
       const { data, error } = await supabase
         .from('products')
@@ -40,7 +43,6 @@ export default function FeaturedProducts() {
         .limit(8)
     
       if (!error && data) {
-        console.log('Fetched products:', data) // Debug log
         setProducts(data)
       }
       setLoading(false)
@@ -49,12 +51,28 @@ export default function FeaturedProducts() {
     fetchProducts()
   }, [])
 
+  // Animation variants for staggered animations
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  }
+
   if (loading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {[...Array(8)].map((_, i) => (
-          <Card key={i} className="animate-pulse">
-            <div className="aspect-square bg-muted" />
+          <Card key={i} className="animate-pulse overflow-hidden">
+            <div className="aspect-[4/3] bg-muted" />
             <CardContent className="p-4">
               <div className="h-4 bg-muted rounded w-3/4 mb-2" />
               <div className="h-4 bg-muted rounded w-1/4" />
@@ -65,44 +83,72 @@ export default function FeaturedProducts() {
     )
   }
 
-  // Update the card structure
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {products.map((product) => (
-        <Card key={product.id} className="hover:shadow-lg transition-shadow">
-          <Link href={`/products/${product.id}`}>
-            <div className="aspect-square relative overflow-hidden">
-              <img
-                src={product.images[0] || 'https://via.placeholder.com/400'}
-                alt={product.title}
-                className="object-cover w-full h-full"
-              />
-              <div className="absolute top-2 right-2 bg-black/70 text-white px-2 py-1 rounded text-sm">
-                {product.condition}
+    <motion.div 
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-100px" }}
+    >
+      {products.map((product, index) => (
+        <motion.div 
+          key={product.id} 
+          variants={itemVariants}
+          whileHover={{ y: -5 }}
+          transition={{ duration: 0.2 }}
+        >
+          <Card className="overflow-hidden h-full bg-card/50 backdrop-blur-sm border-border/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+            <Link href={`/products/${product.id}`} className="block">
+              <div className="aspect-[4/3] relative overflow-hidden group">
+                <img
+                  src={product.images[0] || 'https://via.placeholder.com/400'}
+                  alt={product.title}
+                  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Badge className={cn(
+                  "absolute top-2 right-2 transition-transform duration-300",
+                  product.condition === "New" ? "bg-green-500/90" : 
+                  product.condition === "Like New" ? "bg-blue-500/90" : 
+                  "bg-amber-500/90"
+                )}>
+                  {product.condition}
+                </Badge>
+                <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <Button size="icon" variant="secondary" className="rounded-full h-8 w-8">
+                    <ExternalLink className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
-            </div>
+            </Link>
             <CardContent className="p-4">
-              <h3 className="font-semibold truncate">{product.title}</h3>
-              <p className="text-lg font-bold">${product.price}</p>
+              <div className="flex justify-between items-start mb-1">
+                <h3 className="font-medium line-clamp-1 text-base">{product.title}</h3>
+                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full -mr-2 -mt-1">
+                  <Heart className="h-4 w-4" />
+                </Button>
+              </div>
+              <div className="flex items-center justify-between">
+                <p className="text-lg font-bold text-primary">${product.price}</p>
+                <Button 
+                  className="text-xs px-3 h-8 rounded-full" 
+                  size="sm"
+                  asChild
+                >
+                  <Link
+                    href={`https://wa.me/${product.seller?.phone}?text=Hi, I'm interested in your ${product.title} listed for $${product.price} on ListAgain.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Contact
+                  </Link>
+                </Button>
+              </div>
             </CardContent>
-          </Link>
-          <CardContent className="pt-0 px-4 pb-4">
-            <Button 
-              className="w-full" 
-              size="sm"
-              asChild
-            >
-              <Link
-                href={`https://wa.me/${product.seller?.phone}?text=Hi, I'm interested in your ${product.title} listed for $${product.price} on College Market.`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Contact on WhatsApp
-              </Link>
-            </Button>
-          </CardContent>
-        </Card>
+          </Card>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   )
 }

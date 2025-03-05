@@ -19,6 +19,12 @@ const config: Config = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      fontFamily: {
+        sans: ['var(--font-inter)', 'sans-serif'],
+        poppins: ['var(--font-poppins)', 'sans-serif'],
+        pacifico: ['var(--font-pacifico)', 'cursive'],
+        montserrat: ['var(--font-montserrat)', 'sans-serif'],
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
