@@ -38,7 +38,11 @@ export default function RootLayout({
         >
           <AuthProvider>
             <Header />
-            {children}
+            <div className="pt-16"> {/* Add padding-top to account for fixed header */}
+              {children}
+            </div>
+            <Toaster />
+            <SonnerToaster position="bottom-right" />
           </AuthProvider>
         </ThemeProvider>
       </body>
