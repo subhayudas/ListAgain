@@ -287,13 +287,6 @@ export default function ProductPage() {
               {user ? (
                 <>
                   <Button 
-                    className="w-full bg-green-600 hover:bg-green-700 h-12 text-base" 
-                    size="lg"
-                  >
-                    Buy Now - ${product.price.toFixed(2)}
-                  </Button>
-                  
-                  <Button 
                     className="w-full bg-[#25D366] hover:bg-[#20BD5C] h-12 text-base flex items-center gap-2" 
                     size="lg"
                     asChild
@@ -309,17 +302,10 @@ export default function ProductPage() {
                       WhatsApp Seller
                     </Link>
                   </Button>
-                  
-                  <Button variant="outline" className="w-full h-12 text-base" size="lg" asChild>
-                    <Link href={`/messages?seller=${product.seller.id}&product=${product.id}`}>
-                      <MessageCircle className="mr-2 h-5 w-5" />
-                      Message Seller
-                    </Link>
-                  </Button>
                 </>
               ) : (
                 <Button className="w-full h-12 text-base" size="lg" asChild>
-                  <Link href="/login">Sign in to Purchase</Link>
+                  <Link href="/login">Sign in to Contact</Link>
                 </Button>
               )}
             </div>

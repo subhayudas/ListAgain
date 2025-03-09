@@ -38,7 +38,6 @@ export default function Header() {
 
   const navItems = [
     { href: "/products", label: "Browse" },
-    { href: "/requests", label: "Requests" },
     { href: "/sell", label: "Sell" }
   ]
 
@@ -93,28 +92,6 @@ export default function Header() {
             <div className="hidden md:flex items-center gap-4">
               {user ? (
                 <>
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button variant="ghost" size="icon" className="rounded-full bg-background/50 hover:bg-background/80" asChild>
-                      <Link href="/messages">
-                        <MessageCircle className="h-5 w-5" />
-                      </Link>
-                    </Button>
-                  </motion.div>
-                  
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: -5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button variant="ghost" size="icon" className="rounded-full bg-background/50 hover:bg-background/80" asChild>
-                      <Link href="/wishlist">
-                        <Heart className="h-5 w-5" />
-                      </Link>
-                    </Button>
-                  </motion.div>
-                  
                   <DropdownMenu>
                     <motion.div
                       whileHover={{ scale: 1.05 }}
@@ -283,23 +260,7 @@ export default function Header() {
                         <span>My Listings</span>
                       </Link>
                       
-                      <Link 
-                        href="/messages" 
-                        className="flex items-center space-x-2 p-2 hover:bg-primary/10 rounded-md transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <MessageCircle className="h-5 w-5" />
-                        <span>Messages</span>
-                      </Link>
-                      
-                      <Link 
-                        href="/wishlist" 
-                        className="flex items-center space-x-2 p-2 hover:bg-primary/10 rounded-md transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <Heart className="h-5 w-5" />
-                        <span>Wishlist</span>
-                      </Link>
+                      {/* Removing the Wishlist link from mobile menu */}
                       
                       <button 
                         onClick={() => {

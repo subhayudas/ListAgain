@@ -323,12 +323,9 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" 
-                  alt="College students trading items" 
-                  className="w-full h-auto"
-                />
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[400px]">
+                {/* Replacing the static image with Spline animation */}
+                <spline-viewer url="https://prod.spline.design/hIrvPul2e31PJe0o/scene.splinecode"></spline-viewer>
               </div>
               
               {/* Floating elements */}
@@ -474,59 +471,8 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Featured Categories Section */}
+      {/* Featured Products Section - Moved above Categories */}
       <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            className="text-center max-w-3xl mx-auto mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Popular Categories</h2>
-            <p className="text-xl text-muted-foreground">Discover items across these trending categories</p>
-          </motion.div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <CategoryCard 
-              name="Textbooks" 
-              image="https://images.unsplash.com/photo-1588580000645-5e582b5b4b6c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
-              count={450}
-            />
-            <CategoryCard 
-              name="Electronics" 
-              image="https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
-              count={320}
-              delay={0.1}
-            />
-            <CategoryCard 
-              name="Furniture" 
-              image="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
-              count={280}
-              delay={0.2}
-            />
-            <CategoryCard 
-              name="Clothing" 
-              image="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
-              count={350}
-              delay={0.3}
-            />
-          </div>
-          
-          <div className="text-center mt-12">
-            <Button asChild variant="outline" size="lg" className="rounded-full group">
-              <Link href="/categories" className="flex items-center gap-2">
-                View All Categories
-                <ChevronRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-      
-      {/* Featured Products Section */}
-      <section className="py-24">
         <div className="container mx-auto px-4">
           <motion.div 
             className="flex flex-wrap justify-between items-end mb-12"
@@ -551,8 +497,8 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Testimonials Section */}
-      <section className="py-24 bg-muted/30">
+      {/* Popular Categories Section - Now after Featured Products */}
+      <section className="py-24">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center max-w-3xl mx-auto mb-16"
@@ -561,32 +507,139 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What Students Say</h2>
-            <p className="text-xl text-muted-foreground">Hear from students who have used our platform</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Popular Categories</h2>
+            <p className="text-xl text-muted-foreground">Discover items across these trending categories</p>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Testimonial 
-              name="Alex Johnson"
-              role="Computer Science, Junior"
-              quote="I sold my old laptop and textbooks in less than a day. The process was super smooth and I felt safe meeting on campus."
-              rating={5}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <CategoryCard 
+              name="Bicycles" 
+              image="https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
+              count={320}
             />
-            <Testimonial 
-              name="Sarah Williams"
-              role="Business, Senior"
-              quote="Found furniture for my apartment at half the retail price. Great way to connect with other students and find deals."
-              rating={5}
+            <CategoryCard 
+              name="Stationery" 
+              image="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
+              count={450}
               delay={0.1}
             />
-            <Testimonial 
-              name="Michael Chen"
-              role="Engineering, Sophomore"
-              quote="As a broke college student, this marketplace has been a lifesaver. I've both bought and sold items with great experiences."
-              rating={4}
+            <CategoryCard 
+              name="Clothing" 
+              image="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
+              count={580}
               delay={0.2}
             />
+            <CategoryCard 
+              name="Electronics" 
+              image="https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
+              count={420}
+              delay={0.3}
+            />
+            <CategoryCard 
+              name="Textbooks" 
+              image="https://images.unsplash.com/photo-1588580000645-5e582b5b4b6c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
+              count={350}
+              delay={0.4}
+            />
+            <CategoryCard 
+              name="Furniture" 
+              image="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" 
+              count={280}
+              delay={0.5}
+            />
           </div>
+          
+          {/* Category Highlights */}
+          <div className="mt-16 grid md:grid-cols-3 gap-8">
+            <motion.div
+              className="bg-background rounded-xl p-6 shadow-md border border-border/50 relative overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="absolute -right-10 -top-10 w-32 h-32 bg-primary/10 rounded-full"></div>
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
+                  <ShoppingBag size={24} />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Most Popular</h3>
+                <p className="text-muted-foreground mb-4">Bicycles are our most traded item with over 300+ monthly listings</p>
+                <Button asChild variant="outline" size="sm" className="group">
+                  <Link href="/category/bicycles" className="flex items-center gap-2">
+                    Browse Bicycles
+                    <ChevronRight size={16} className="transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              className="bg-background rounded-xl p-6 shadow-md border border-border/50 relative overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="absolute -right-10 -top-10 w-32 h-32 bg-blue-500/10 rounded-full"></div>
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500 mb-4">
+                  <TrendingUp size={24} />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Trending Now</h3>
+                <p className="text-muted-foreground mb-4">Electronics are trending with high demand for laptops and accessories</p>
+                <Button asChild variant="outline" size="sm" className="group">
+                  <Link href="/category/electronics" className="flex items-center gap-2">
+                    Browse Electronics
+                    <ChevronRight size={16} className="transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              className="bg-background rounded-xl p-6 shadow-md border border-border/50 relative overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="absolute -right-10 -top-10 w-32 h-32 bg-green-500/10 rounded-full"></div>
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-500 mb-4">
+                  <Clock size={24} />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Seasonal Deals</h3>
+                <p className="text-muted-foreground mb-4">End of semester textbook and stationery sales are happening now</p>
+                <Button asChild variant="outline" size="sm" className="group">
+                  <Link href="/category/textbooks" className="flex items-center gap-2">
+                    Browse Textbooks
+                    <ChevronRight size={16} className="transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+          
+          <div className="text-center mt-12">
+            <Button asChild variant="outline" size="lg" className="rounded-full group">
+              <Link href="/categories" className="flex items-center gap-2">
+                View All Categories
+                <ChevronRight size={16} className="transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+      
+      {/* Testimonials Section */}
+      <section className="py-24 bg-muted/30">
+        <div className="container mx-auto px-4">
+          {/* Testimonials content */}
+          {/* ... */}
         </div>
       </section>
       

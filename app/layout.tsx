@@ -4,6 +4,7 @@ import { Inter, Poppins } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/header';
+import Footer from '@/components/footer';
 import { AuthProvider } from '@/components/auth-provider';
 import { Toaster as SonnerToaster } from 'sonner';
 import './styles/animations.css'
@@ -21,8 +22,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'ListAgain',
-  description: 'Buy and sell items within your community',
+  title: 'ListAgain - Buy and Sell Items Within Your College Community',
+  description: 'ListAgain is the premier marketplace for college students to buy and sell items within their community. Safe, easy, and sustainable.',
+  keywords: 'college marketplace, student marketplace, buy and sell, second-hand items, college community',
 };
 
 export default function RootLayout({
@@ -39,7 +41,7 @@ export default function RootLayout({
         />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
-      <body className="min-h-screen font-sans">
+      <body className="min-h-screen font-sans flex flex-col">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -48,9 +50,10 @@ export default function RootLayout({
         >
           <AuthProvider>
             <Header />
-            <div className="pt-16"> {/* Add padding-top to account for fixed header */}
+            <div className="pt-16 flex-grow"> {/* Add flex-grow to push footer to bottom */}
               {children}
             </div>
+            <Footer />
             <Toaster />
             <SonnerToaster position="bottom-right" />
           </AuthProvider>
