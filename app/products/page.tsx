@@ -451,7 +451,7 @@ export default function ProductsPage() {
                 
                 {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
                   // Show first page, last page, current page, and pages around current
-                  let pageToShow: number | null = null;
+                  let pageToShow = 0; // Initialize with a default value instead of null
                   
                   if (totalPages <= 5) {
                     // If 5 or fewer pages, show all
