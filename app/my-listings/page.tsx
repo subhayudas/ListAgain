@@ -132,7 +132,7 @@ export default function MyListingsPage() {
             </div>
             <CardContent className="p-4">
               <h3 className="font-semibold truncate">{product.title}</h3>
-              <p className="text-lg font-bold">${product.price}</p>
+              <p className="text-lg font-bold">₹{product.price}</p>
               <p className="text-sm text-muted-foreground">
                 Condition: {product.condition}
               </p>

@@ -348,7 +348,7 @@ export default function ProfilePage() {
                                   </div>
                                   <div className="p-2">
                                     <p className="font-medium truncate">{product.title}</p>
-                                    <p className="text-primary font-bold">${product.price}</p>
+                                    <p className="text-primary font-bold">₹{product.price}</p>
                                   </div>
                                   <div className="absolute top-2 right-2 bg-black/70 text-white px-2 py-1 rounded text-xs">
                                     {product.status}
@@ -502,7 +502,7 @@ export default function ProfilePage() {
                               </div>
                               <div className="p-3">
                                 <p className="font-medium truncate">{product.title}</p>
-                                <p className="text-primary font-bold">${product.price}</p>
+                                <p className="text-primary font-bold">₹{product.price}</p>
                               </div>
                               <div className="absolute top-2 right-2 bg-black/70 text-white px-2 py-1 rounded text-xs">
                                 {product.status}

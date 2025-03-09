@@ -74,7 +74,7 @@ export default function ProductPage() {
     if (navigator.share) {
       navigator.share({
         title: product?.title,
-        text: `Check out this ${product?.title} for $${product?.price}`,
+        text: `Check out this ${product?.title} for ₹${product?.price}`,
         url: window.location.href,
       })
     } else {
@@ -200,7 +200,7 @@ export default function ProductPage() {
               </div>
               <h1 className="text-3xl font-bold mb-3">{product.title}</h1>
               <div className="flex items-center gap-2 mb-4">
-                <p className="text-3xl font-bold text-primary">${product.price.toFixed(2)}</p>
+                <p className="text-3xl font-bold text-primary">₹{product.price.toFixed(2)}</p>
                 {product.is_negotiable && (
                   <Badge variant="secondary">Negotiable</Badge>
                 )}
@@ -241,7 +241,7 @@ export default function ProductPage() {
                   </li>
                   <li className="flex justify-between">
                     <span className="text-muted-foreground">Price</span>
-                    <span className="font-medium">${product.price.toFixed(2)}</span>
+                    <span className="font-medium">₹{product.price.toFixed(2)}</span>
                   </li>
                   <li className="flex justify-between">
                     <span className="text-muted-foreground">Negotiable</span>

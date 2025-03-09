@@ -58,7 +58,7 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
-  const [priceRange, setPriceRange] = useState([0, 1000])
+  const [priceRange, setPriceRange] = useState([0, 100000])
   const [condition, setCondition] = useState<string>("all")
   const [currentPage, setCurrentPage] = useState(1)
   const [totalProducts, setTotalProducts] = useState(0)
@@ -100,6 +100,14 @@ export default function ProductsPage() {
 
   async function fetchProducts() {
     setLoading(true)
+    
+    // Add console logs to debug
+    console.log("Fetching products with filters:", {
+      search: debouncedSearch,
+      category: selectedCategory,
+      condition,
+      priceRange
+    });
     
     // Count total products for pagination
     let countQuery = supabase
@@ -164,7 +172,7 @@ export default function ProductsPage() {
   const resetFilters = () => {
     setSearch('')
     setSelectedCategory('all')
-    setPriceRange([0, 1000])
+    setPriceRange([0, 100000])
     setCondition('all')
   }
 
@@ -262,18 +270,20 @@ export default function ProductsPage() {
         </div>
 
         <div className="space-y-2">
-          <h3 className="font-medium text-sm">Price Range</h3>
-          <Slider
-            defaultValue={[0, 1000]}
-            max={1000}
-            step={10}
-            value={localPriceRange}
-            onValueChange={setLocalPriceRange}
-            className="py-4"
-          />
-          <div className="flex justify-between text-sm text-muted-foreground">
-            <span>${localPriceRange[0]}</span>
-            <span>${localPriceRange[1]}</span>
+          <div className="space-y-2">
+            <h3 className="font-medium text-sm">Price Range</h3>
+            <Slider
+              defaultValue={[0, 100000]}
+              max={100000}
+              step={1000}
+              value={localPriceRange}
+              onValueChange={setLocalPriceRange}
+              className="py-4"
+            />
+            <div className="flex justify-between text-sm text-muted-foreground">
+              <span>₹{localPriceRange[0]}</span>
+              <span>₹{localPriceRange[1]}</span>
+            </div>
           </div>
         </div>
 
@@ -413,7 +423,7 @@ export default function ProductsPage() {
                       </div>
                       <CardContent className="p-4 flex-1 flex flex-col">
                         <h3 className="font-semibold text-lg line-clamp-1">{product.title}</h3>
-                        <p className="text-xl font-bold mt-1 text-primary">${product.price}</p>
+                        <p className="text-xl font-bold mt-1 text-primary">₹{product.price}</p>
                         <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
                           {product.description}
                         </p>

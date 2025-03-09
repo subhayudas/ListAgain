@@ -109,11 +109,11 @@ export default function FeaturedProducts() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <Badge className={cn(
                   "absolute top-2 right-2 transition-transform duration-300",
-                  product.condition === "New" ? "bg-green-500/90" : 
-                  product.condition === "Like New" ? "bg-blue-500/90" : 
+                  product.condition === "new" ? "bg-green-500/90" : 
+                  product.condition === "like-new" ? "bg-blue-500/90" : 
                   "bg-amber-500/90"
                 )}>
-                  {product.condition}
+                  {product.condition.charAt(0).toUpperCase() + product.condition.slice(1).replace('-', ' ')}
                 </Badge>
                 <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <Button size="icon" variant="secondary" className="rounded-full h-8 w-8">
@@ -130,14 +130,14 @@ export default function FeaturedProducts() {
                 </Button>
               </div>
               <div className="flex items-center justify-between">
-                <p className="text-lg font-bold text-primary">${product.price}</p>
+                <p className="text-lg font-bold text-primary">₹{product.price}</p>
                 <Button 
                   className="text-xs px-3 h-8 rounded-full" 
                   size="sm"
                   asChild
                 >
                   <Link
-                    href={`https://wa.me/${product.seller?.phone}?text=Hi, I'm interested in your ${product.title} listed for $${product.price} on ListAgain.`}
+                    href={`https://wa.me/${product.seller?.phone}?text=Hi, I'm interested in your ${product.title} listed for ₹${product.price} on ListAgain.`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
