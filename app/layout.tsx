@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     ],
     apple: { url: '/apple-icon.png', type: 'image/png' },
   },
+  verification: {
+    google: '4VJa27Ccaz6xGx_lCNGddmKqBqcqINaH_NJXe9kc7D0',
+  }
 }
 
 export default function RootLayout({
@@ -46,6 +49,7 @@ export default function RootLayout({
           src="https://unpkg.com/@splinetool/viewer@1.9.71/build/spline-viewer.js"
         />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <meta name="google-site-verification" content="4VJa27Ccaz6xGx_lCNGddmKqBqcqINaH_NJXe9kc7D0" />
       </head>
       <body className="min-h-screen font-sans flex flex-col">
         <ThemeProvider
