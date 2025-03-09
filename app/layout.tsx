@@ -22,10 +22,16 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'ListAgain - Buy and Sell Items Within Your College Community',
-  description: 'ListAgain is the premier marketplace for college students to buy and sell items within their community. Safe, easy, and sustainable.',
-  keywords: 'college marketplace, student marketplace, buy and sell, second-hand items, college community',
-};
+  title: 'ListAgain - Buy & Sell Items',
+  description: 'The easiest way to buy, sell, and discover items in your community',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '32x32' }
+    ],
+    apple: { url: '/apple-icon.png', type: 'image/png' },
+  },
+}
 
 export default function RootLayout({
   children,
