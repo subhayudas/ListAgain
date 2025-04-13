@@ -1,74 +1,107 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
-import { ThemeProvider } from '@/components/theme-provider';
-import { Toaster } from '@/components/ui/toaster';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
-import { AuthProvider } from '@/components/auth-provider';
-import { Toaster as SonnerToaster } from 'sonner';
-import './styles/animations.css'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import { ThemeProvider } from '@/components/theme-provider'
+import Header from '@/components/header'
+import Footer from '@/components/footer'
+import { AuthProvider } from '@/components/auth-provider'
+import { Toaster } from '@/components/ui/toaster'
+import { Metadata } from 'next'
 
-// Use Inter for body text and Poppins for headings
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
+const inter = Inter({ subsets: ['latin'] })
 
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-poppins',
-});
-
+// Add metadata for SEO
 export const metadata: Metadata = {
-  title: 'ListAgain - Buy & Sell Items',
-  description: 'The easiest way to buy, sell, and discover items in your community',
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.png', type: 'image/png', sizes: '32x32' }
-    ],
-    apple: { url: '/apple-icon.png', type: 'image/png' },
+  title: {
+    default: 'ListAgain | Buy & Sell in Your College Community',
+    template: '%s | ListAgain'
   },
-  verification: {
-    google: '4VJa27Ccaz6xGx_lCNGddmKqBqcqINaH_NJXe9kc7D0',
-  }
+  description: 'The premier marketplace for college students to buy and sell items within their community. Safe, easy, and sustainable.',
+  keywords: ['college marketplace', 'student marketplace', 'buy and sell', 'campus trading', 'student exchange', 'ListAgain'],
+  authors: [{ name: 'ListAgain Team' }],
+  creator: 'ListAgain',
+  publisher: 'ListAgain',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://listagain.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'ListAgain | Buy & Sell in Your College Community',
+    description: 'The premier marketplace for college students to buy and sell items within their community.',
+    url: 'https://listagain.vercel.app',
+    siteName: 'ListAgain',
+    locale: 'en_US',
+    type: 'website',
+    images: [
+      {
+        url: 'https://listagain.vercel.app/og-image.jpg', // You'll need to create this image
+        width: 1200,
+        height: 630,
+        alt: 'ListAgain - College Marketplace',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ListAgain | Buy & Sell in Your College Community',
+    description: 'The premier marketplace for college students to buy and sell items within their community.',
+    images: ['https://listagain.vercel.app/og-image.jpg'], // Same as OG image
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <script 
-          type="module" 
-          src="https://unpkg.com/@splinetool/viewer@1.9.71/build/spline-viewer.js"
+        {/* Add structured data for better SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "ListAgain",
+              "url": "https://listagain.vercel.app",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://listagain.vercel.app/products?search={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            })
+          }}
         />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-        <meta name="google-site-verification" content="4VJa27Ccaz6xGx_lCNGddmKqBqcqINaH_NJXe9kc7D0" />
+        {/* Add verification for Google Search Console */}
+        <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
       </head>
-      <body className="min-h-screen font-sans flex flex-col">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <AuthProvider>
             <Header />
-            <div className="pt-16 flex-grow"> {/* Add flex-grow to push footer to bottom */}
-              {children}
-            </div>
+            <main>{children}</main>
             <Footer />
             <Toaster />
-            <SonnerToaster position="bottom-right" />
           </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

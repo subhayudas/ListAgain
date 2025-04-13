@@ -229,4 +229,5 @@ INSERT INTO categories (name, slug, description) VALUES
   ('Bicycles', 'bicycles', 'Bikes and cycling equipment'),
   ('Electronics', 'electronics', 'Electronic devices and accessories'),
   ('Books', 'books', 'Textbooks and other reading materials'),
-  ('Sports Equipment', 'sports', 'Sports and fitness gear');
+  ('Sports Equipment', 'sports', 'Sports and fitness gear'),
+  ('Others', 'others', 'Miscellaneous items that dont fit other categories');
