@@ -53,7 +53,7 @@ export default function RegisterPage() {
       if (profileError) {
         console.error('Profile creation error:', profileError)
         // If profile creation fails, clean up the auth user
-        await signOut()
+        await supabase.auth.signOut()
         throw new Error('Failed to create user profile. Please try again.')
       }
 
