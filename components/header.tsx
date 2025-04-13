@@ -23,8 +23,14 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  const { signOut } = useAuth()
+  
   const handleSignOut = async () => {
-    await supabase.auth.signOut()
+    try {
+      await signOut()
+    } catch (error) {
+      console.error('Sign out error:', error)
+    }
   }
 
   // Track scroll position to change navbar appearance
